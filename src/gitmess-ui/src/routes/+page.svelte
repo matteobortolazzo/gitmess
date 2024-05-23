@@ -1,13 +1,7 @@
 <script lang="ts">
-	import { getRepositories } from '$lib/api';
-	import type { GitRepository } from '$lib/models/api.model';
-	import { onMount } from 'svelte';
+	import type { IndexPayload } from '$lib/payloads/index.payload';
 
-	let repositories: GitRepository[] = [];
-
-	onMount(async () => {
-		repositories = await getRepositories();
-	});
+	export let data: IndexPayload;
 </script>
 
 <div class="card p-4">
@@ -17,7 +11,7 @@
 	<article class="mt-4">
 		<nav class="list-nav">
 			<ul>
-				{#each repositories as repository}
+				{#each data.repositories as repository}
 					<li>
 						<a href="/repositories/{repository.name}/tree/main">
 							<span class="badge">📁</span>

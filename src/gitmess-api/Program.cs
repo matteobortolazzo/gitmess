@@ -80,6 +80,9 @@ group.MapGet("/{repo}/tree/{branch}/{path?}", (string repo, string branch = "mai
     path = HttpUtility.UrlDecode(path);
 
     var repoPath = GetPath(repo);
+
+    RunGitCommand($"checkout {branch}", repoPath);
+
     var isRepo = string.IsNullOrWhiteSpace(path);
     if (isRepo)
     {
