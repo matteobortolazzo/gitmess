@@ -16,6 +16,7 @@ services:
       - gitnet
     depends_on:
       - api
+
   git-server:
     build: ./src/gitmess-gitserver/
     container_name: gitmess-gitserver

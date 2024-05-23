@@ -44,7 +44,8 @@ sudo chown -R $USER:$USER /data/git/repositories
 3. Run API
 
 ```bash
-dotnet watch --urls=https://localhost:5001
+dotnet restore
+dotnet watch --urls=http://localhost:5001
 ```
 
 4. Run UI 
