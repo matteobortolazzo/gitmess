@@ -19,6 +19,7 @@
 	<header>
 		<h3 class="h3">{$page.params.repo}</h3>
 	</header>
+	<h4>Branch:</h4>
 	<ListBox bind:value={selectedBranch} multiple={false}>
 		{#each data.branches as branch}
 			<ListBoxItem bind:group={selectedBranch} name="branch" value={branch} on:click={() => handleBranchClick(branch)}>{branch}</ListBoxItem>
