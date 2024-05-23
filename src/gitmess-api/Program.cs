@@ -104,6 +104,22 @@ group.MapPost("/{repo}", (string repo) =>
     RunGitCommand("init", GetPath(repo));
 });
 
+group.MapGet("/{repo}/branches", (string repo) =>
+{
+    var repoPath = GetPath(repo);
+    var output = RunGitCommand("branch", repoPath);
+    return output
+        .Split("\n")
+        .Where(line => !string.IsNullOrEmpty(line))
+        .Select(line => line.TrimStart('*').Trim())
+        .ToArray();
+});
+// group.MapGet("/{repo}/branches/{branch}", (string repo, string branch) =>
+// {
+//     var repoPath = GetPath(repo);
+//     RunGitCommand($"checkout -b {branch}",repoPath);
+// });
+
 app.Run();
 
 record GitRepository(string Name);

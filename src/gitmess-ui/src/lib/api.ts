@@ -16,3 +16,10 @@ export async function getRepositoryTree(repo: string, branch: string, path: stri
 	const response = await fetch(url);
 	return await response.json();
 }
+export async function getBranches(repo: string): Promise<string[]> {
+	const response = await fetch(`${API_URL}/repositories/${repo}/branches`);
+	console.log(response);
+	return await response.json();
+}
+
+
