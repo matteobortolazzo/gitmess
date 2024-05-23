@@ -104,7 +104,7 @@ group.MapPost("/{repo}", (string repo) =>
     RunGitCommand("init", GetPath(repo));
 });
 
-group.MapPost("/{repo}/branches", (string repo) =>
+group.MapGet("/{repo}/branches", (string repo) =>
 {
     var repoPath = GetPath(repo);
     var output = RunGitCommand("branch", repoPath);
@@ -114,11 +114,11 @@ group.MapPost("/{repo}/branches", (string repo) =>
         .Select(line => line.TrimStart('*').Trim())
         .ToArray();
 });
-group.MapPost("/{repo}/branches/{branch}", (string repo, string branch) =>
-{
-    var repoPath = GetPath(repo);
-    RunGitCommand($"checkout -b {branch}",repoPath);
-});
+// group.MapGet("/{repo}/branches/{branch}", (string repo, string branch) =>
+// {
+//     var repoPath = GetPath(repo);
+//     RunGitCommand($"checkout -b {branch}",repoPath);
+// });
 
 app.Run();
 

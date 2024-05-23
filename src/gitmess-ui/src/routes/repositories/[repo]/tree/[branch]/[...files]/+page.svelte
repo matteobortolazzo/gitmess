@@ -3,25 +3,25 @@
 	import type { RepoPayload } from '$lib/payloads/repo.payload';
 	import GitDirectory from '$lib/components/GitDirectory.svelte';
 	import {CodeBlock, ListBox, ListBoxItem} from '@skeletonlabs/skeleton';
-	import {getBranches} from "$lib/api";
+	import {goto} from "$app/navigation";
 	
 	export let data: RepoPayload;
+	let selectedBranch = $page.params.branch || data.branches[0];
 
-	const branches = async () => {
-		return await getBranches(
-			$page.params.repo,
-		);
+	const handleBranchClick = (branch) => {
+		selectedBranch = branch;
+		goto(`/repositories/${$page.params.repo}/tree/${branch}`);
 	};
-	console.log(branches);
+
 </script>
 
 <div class="card p-4">
 	<header>
 		<h3 class="h3">{$page.params.repo}</h3>
 	</header>
-	<ListBox>
-		{#each branches as branch}
-			<ListBoxItem value={branch}>{branch}</ListBoxItem>
+	<ListBox bind:value={selectedBranch} multiple={false}>
+		{#each data.branches as branch}
+			<ListBoxItem bind:group={selectedBranch} name="branch" value={branch} on:click={() => handleBranchClick(branch)}>{branch}</ListBoxItem>
 		{/each}
 	</ListBox>
 
