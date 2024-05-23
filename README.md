@@ -27,3 +27,28 @@ git push origin main
 4. Check on app
 
 Go to `https://localhost:3001` from browser
+
+## Run locally
+
+1. Create folder
+
+```bash
+sudo mkdir -p /data/git/repositories
+```
+
+2. Allow user to change folder
+```bash
+sudo chown -R $USER:$USER /data/git/repositories
+```
+
+3. Run API
+
+```bash
+dotnet watch --urls=https://localhost:5001
+```
+
+4. Run UI 
+
+```bash
+npm run dev
+```
