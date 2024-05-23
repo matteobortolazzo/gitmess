@@ -5,22 +5,18 @@ services:
       - git-repos:/data/git/repositories
     ports:
       - "2222:22"
-    networks:
-      - gitnet
 
   api:
     build: ./src/gitmess-api
     volumes:
       - git-repos:/data/git/repositories
-    ports:
-      - "5001:8080"
     networks:
       - gitnet
 
   frontend:
     build: ./src/gitmess-ui
     ports:
-      - "3001:80"
+      - "3001:3001"
     networks:
       - gitnet
 

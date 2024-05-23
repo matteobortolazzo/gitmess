@@ -49,6 +49,8 @@ dotnet watch --urls=https://localhost:5001
 
 4. Run UI 
 
+Change API_URL in `api.ts`.
+
 ```bash
 npm run dev
 ```
